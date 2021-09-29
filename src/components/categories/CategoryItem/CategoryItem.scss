@@ -1,0 +1,32 @@
+.card {
+  margin-bottom: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.card-image {
+  height: 100px;
+}
+
+.card-content {
+  background-color: rgba(255, 255, 255, 0.4);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  font-weight: bold !important;
+  color: black;
+  padding: 0.5rem !important;
+  transition: 0.5s;
+}
+
+.card:hover .card-content {
+  visibility: visible;
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+}

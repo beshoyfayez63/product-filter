@@ -1,0 +1,25 @@
+.filter {
+  padding: 0.2rem 0.5rem 0.5rem;
+
+  .filter-box {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, min-content);
+    max-width: 100%;
+    row-gap: 10px;
+    column-gap: 20px;
+    @media screen and (max-width: 900px) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-rows: min-content;
+    }
+    @media screen and (max-width: 600px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(3, min-content);
+    }
+
+    p {
+      grid-row: 1 / span 1;
+      grid-column: 1 / -1;
+    }
+  }
+}

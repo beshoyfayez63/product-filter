@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import Categories from './components/categories/Categories';
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Filter from './components/filters/Filter';
+import Products from './components/products/Products';
+import { ProductsContextProvider } from './context/PorductProvider';
+
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ProductsContextProvider>
+      <CssBaseline />
+      <Container>
+        <Typography variant='h3' align='center' mt={5}>
+          Our e-commerce store
+        </Typography>
+        <Categories />
+      </Container>
+      <Grid container mt={5} columns={16} justifyContent='center'>
+        <Grid item md={4} xs={12} pl={2} mb={2}>
+          <Filter />
+        </Grid>
+        <Grid
+          item
+          container
+          spacing={3}
+          md={12}
+          px={2}
+          mb={2}
+          justifyContent='center'
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Products />
+        </Grid>
+      </Grid>
+    </ProductsContextProvider>
   );
 }
 
