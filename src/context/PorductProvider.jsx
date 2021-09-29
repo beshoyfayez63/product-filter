@@ -24,8 +24,10 @@ const productsContextReducer = (state, action) => {
           state.urlParams = '';
         }
       }
+
       return {
         ...state,
+        page: 1,
       };
     case 'GET_PRODUCTS':
       return {
@@ -55,7 +57,7 @@ export const ProductsContextProvider = ({ children }) => {
     productsCount: null,
   });
   const { urlParams, products, page, productsCount } = state;
-
+  console.log(page);
   const limitProducts = 20;
 
   const changeUrlParams = useCallback((urlParams, mode) => {

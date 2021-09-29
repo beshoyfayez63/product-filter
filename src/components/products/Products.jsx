@@ -81,6 +81,7 @@ function Products() {
       {productsJsx}
       {!error && (
         <Pagination
+          page={page}
           productsCount={productsCount}
           limitProducts={limitProducts}
           paginationChangeHandler={paginationChange}

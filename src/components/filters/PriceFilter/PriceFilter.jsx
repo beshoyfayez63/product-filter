@@ -2,7 +2,8 @@ import { useContext, useCallback, useReducer } from 'react';
 import ProductsContext from '../../../context/product-context';
 import TextField from '@mui/material/TextField';
 import ClearIcon from '@mui/icons-material/Clear';
-import ButtonUI from '../../UI/Button';
+// import ButtonUI from '../../UI/Button';
+import Button from '@mui/material/Button';
 import Filter from '../../UI/Filter';
 import Slider from '@mui/material/Slider';
 import { addParams, deleteParams } from '../../../util/params';
@@ -89,24 +90,24 @@ function PriceFilter() {
         min={1}
         max={1000}
       />
-      <ButtonUI
+      <Button
         variant='contained'
         color='inherit'
         size='small'
-        fz='13px'
-        clicked={searchPriceHandler}
+        sx={{ fontSize: '13px' }}
+        onClick={searchPriceHandler}
       >
         Go
-      </ButtonUI>
-      <ButtonUI
+      </Button>
+      <Button
         variant='contained'
         color='error'
         size='small'
-        sx='12px'
-        clicked={clearPriceFilter}
+        sx={{ fontSize: '12px' }}
+        onClick={clearPriceFilter}
       >
         <ClearIcon sx={{ fontSize: '17px' }} /> Clear
-      </ButtonUI>
+      </Button>
     </Filter>
   );
 }

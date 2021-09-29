@@ -2,7 +2,12 @@ import { memo } from 'react';
 import Pagination from '@mui/material/Pagination';
 import Box from '@mui/material/Box';
 
-function ProductsPagination(props) {
+function ProductsPagination({
+  productsCount,
+  limitProducts,
+  paginationChangeHandler,
+  page,
+}) {
   return (
     <Box
       sx={{
@@ -13,9 +18,10 @@ function ProductsPagination(props) {
       }}
     >
       <Pagination
-        count={Math.round(props.productsCount / props.limitProducts + 0.5)}
+        page={page}
+        count={Math.round(productsCount / limitProducts + 0.5)}
         color='primary'
-        onChange={props.paginationChangeHandler}
+        onChange={paginationChangeHandler}
       />
     </Box>
   );
