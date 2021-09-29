@@ -57,7 +57,7 @@ export const ProductsContextProvider = ({ children }) => {
     productsCount: null,
   });
   const { urlParams, products, page, productsCount } = state;
-  console.log(page);
+
   const limitProducts = 20;
 
   const changeUrlParams = useCallback((urlParams, mode) => {
