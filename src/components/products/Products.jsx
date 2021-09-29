@@ -5,7 +5,7 @@ import useHttp from '../../hooks/http-hook';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import ProductItem from './productItem/ProductItem';
 import Pagination from './pagination/Pagination';
-import ErrorModal from '../UI/ErrorModal';
+import InfoModal from '../UI/InfoModal';
 
 import './Products.scss';
 
@@ -50,10 +50,10 @@ function Products() {
   );
 
   useEffect(() => {
-    if (error) {
+    if (error || !products) {
       setOpenModal(true);
     }
-  }, [error]);
+  }, [error, products, loading]);
 
   const closeModalHandler = () => setOpenModal(false);
 
@@ -62,24 +62,24 @@ function Products() {
     productsJsx = <LoadingSpinner />;
   }
 
-  if (!loading && !error) {
+  if (!loading && !error && products && products.length > 0) {
     productsJsx = products.map((product) => {
       return <ProductItem product={product} key={product.id} />;
     });
   }
 
-  if (error && !loading) {
-    productsJsx = <p>{error}</p>;
+  if ((error || !products || products?.length === 0) && !loading) {
+    productsJsx = <p>{error ? error : 'No Products Found'}</p>;
   }
   return (
     <Fragment>
-      <ErrorModal
-        message={error}
+      <InfoModal
+        message={error || 'No Products Found'}
         open={openModal}
         handleClose={closeModalHandler}
       />
       {productsJsx}
-      {!error && (
+      {!error && products && products.length !== 0 && (
         <Pagination
           page={page}
           productsCount={productsCount}

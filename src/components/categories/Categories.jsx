@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import CategoryItem from './CategoryItem/CategoryItem';
-import ErrorModal from '../UI/ErrorModal';
+import InfoModal from '../UI/InfoModal';
 
 function Categories() {
   const { changeUrlParams, urlParams } = useContext(ProductContext);
@@ -36,10 +36,10 @@ function Categories() {
   };
 
   useEffect(() => {
-    if (categoryError) {
+    if (categoryError || !categories) {
       setOpen(true);
     }
-  }, [categoryError]);
+  }, [categoryError, categories]);
   const closeModalHandler = () => setOpen(false);
 
   return (
@@ -49,7 +49,7 @@ function Categories() {
       </Typography>
       <Grid container rowSpacing={2} columnSpacing={10} justifyContent='center'>
         {loading && !categoryError && <LoadingSpinner />}
-        {categories.length > 0 &&
+        {(categories || categories?.length > 0) &&
           categories.map((category) => {
             return (
               <CategoryItem
@@ -61,12 +61,13 @@ function Categories() {
             );
           })}
 
-        <ErrorModal
+        <InfoModal
           open={open}
           handleClose={closeModalHandler}
-          message={categoryError}
+          message={categoryError ? categoryError : 'No Categories'}
         />
-        {categoryError && <p>{categoryError}</p>}
+        {(categoryError || !categories || categories?.length === 0) &&
+          !loading && <p>{categoryError ? categoryError : 'No Categories'}</p>}
       </Grid>
       {!disableClear && (
         <Button onClick={deleteByCategoryFilter} variant='contained'>

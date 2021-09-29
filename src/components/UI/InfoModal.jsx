@@ -17,7 +17,7 @@ function ErrorModal({ open, handleClose, message }) {
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
       >
-        <DialogTitle id='alert-dialog-title'>Title</DialogTitle>
+        <DialogTitle id='alert-dialog-title'>Message</DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
             {message}
